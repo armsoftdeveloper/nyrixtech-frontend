@@ -1,5 +1,6 @@
 import { Seo } from "../../components/seo/Seo";
 import { Reveal } from "../../components/ui/Reveal";
+import { trackEmailClick } from "../../utils/analytics";
 
 const contactEmail = import.meta.env.VITE_CONTACT_EMAIL as string | undefined;
 const gaEnabled = Boolean(import.meta.env.VITE_GA_MEASUREMENT_ID);
@@ -77,7 +78,11 @@ export default function CookiePolicyPage() {
             <h2 className="text-base font-semibold text-[var(--color-mist-100)] mb-2">6. Questions</h2>
             <p>
               {contactEmail ? (
-                <a href={`mailto:${contactEmail}`} className="text-[var(--color-signal-400)] hover:text-[var(--color-mist-100)]">
+                <a
+                  href={`mailto:${contactEmail}`}
+                  onClick={() => trackEmailClick(contactEmail, "cookie_policy_page")}
+                  className="text-[var(--color-signal-400)] hover:text-[var(--color-mist-100)]"
+                >
                   Email us at {contactEmail}
                 </a>
               ) : (

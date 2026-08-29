@@ -9,7 +9,7 @@ import { services } from "../data/services";
 import type { ContactFormData } from "../types";
 import { extractErrorMessage } from "../utils/errors";
 import { getAttribution } from "../utils/attribution";
-import { trackContactSubmitted } from "../utils/analytics";
+import { trackContactSubmitted, trackPhoneClick, trackEmailClick } from "../utils/analytics";
 
 const baseInitialForm: Omit<ContactFormData, keyof ReturnType<typeof getAttribution>> = {
   name: "",
@@ -181,12 +181,20 @@ export default function ContactPage() {
                 <div className="rounded-2xl border border-[var(--color-line-800)] bg-[var(--color-ink-800)] p-6 space-y-4">
                   <h2 className="text-sm font-semibold text-[var(--color-mist-100)]">Direct contact</h2>
                   {contactEmail && (
-                    <a href={`mailto:${contactEmail}`} className="flex items-center gap-3 text-sm text-[var(--color-mist-400)] hover:text-[var(--color-mist-100)]">
+                    <a
+                      href={`mailto:${contactEmail}`}
+                      onClick={() => trackEmailClick(contactEmail, "contact_page")}
+                      className="flex items-center gap-3 text-sm text-[var(--color-mist-400)] hover:text-[var(--color-mist-100)]"
+                    >
                       <Mail size={16} color="var(--color-signal-400)" /> {contactEmail}
                     </a>
                   )}
                   {contactPhone && (
-                    <a href={`tel:${contactPhone.replace(/\s+/g, "")}`} className="flex items-center gap-3 text-sm text-[var(--color-mist-400)] hover:text-[var(--color-mist-100)]">
+                    <a
+                      href={`tel:${contactPhone.replace(/\s+/g, "")}`}
+                      onClick={() => trackPhoneClick(contactPhone, "contact_page")}
+                      className="flex items-center gap-3 text-sm text-[var(--color-mist-400)] hover:text-[var(--color-mist-100)]"
+                    >
                       <Phone size={16} color="var(--color-signal-400)" /> {contactPhone}
                     </a>
                   )}

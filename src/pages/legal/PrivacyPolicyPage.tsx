@@ -1,5 +1,6 @@
 import { Seo } from "../../components/seo/Seo";
 import { Reveal } from "../../components/ui/Reveal";
+import { trackEmailClick } from "../../utils/analytics";
 
 const contactEmail = import.meta.env.VITE_CONTACT_EMAIL as string | undefined;
 
@@ -89,7 +90,11 @@ export default function PrivacyPolicyPage() {
             <p>
               For questions about this policy or to make a data request,{" "}
               {contactEmail ? (
-                <a href={`mailto:${contactEmail}`} className="text-[var(--color-signal-400)] hover:text-[var(--color-mist-100)]">
+                <a
+                  href={`mailto:${contactEmail}`}
+                  onClick={() => trackEmailClick(contactEmail, "privacy_page")}
+                  className="text-[var(--color-signal-400)] hover:text-[var(--color-mist-100)]"
+                >
                   email us at {contactEmail}
                 </a>
               ) : (
