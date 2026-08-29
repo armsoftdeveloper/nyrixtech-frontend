@@ -1,0 +1,23 @@
+# React Router is client-side — without this, a direct visit or refresh on any
+# route other than "/" (e.g. /services) 404s, because Apache looks for a real
+# services/index.html file that doesn't exist. Fall back to index.html and let
+# the SPA's router handle the path instead.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Long-lived caching for hashed build assets (filenames change on every rebuild,
+# so it's safe to cache them aggressively).
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>

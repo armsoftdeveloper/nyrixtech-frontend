@@ -48,7 +48,23 @@ export function Footer() {
               We manage your IT infrastructure so you can focus on your business. Networking, servers, cybersecurity
               and monitoring for Armenian companies — built to scale internationally.
             </p>
-            <p className="mt-6 text-xs font-mono text-[var(--color-mist-600)]">Yerevan, Armenia</p>
+            <div className="mt-6 space-y-1.5 text-xs font-mono text-[var(--color-mist-600)]">
+              <p>Yerevan, Armenia</p>
+              <p>
+                <a href="tel:+37441843414" className="hover:text-[var(--color-mist-300)] transition-colors">
+                  +374 41 843 414
+                </a>
+                <span className="mx-1.5 text-[var(--color-line-800)]">·</span>
+                <a href="tel:+37477850702" className="hover:text-[var(--color-mist-300)] transition-colors">
+                  +374 77 850 702
+                </a>
+              </p>
+              <p>
+                <a href="mailto:nyrixtech@gmail.com" className="hover:text-[var(--color-mist-300)] transition-colors">
+                  nyrixtech@gmail.com
+                </a>
+              </p>
+            </div>
           </div>
 
           {columns.map((col) => (
