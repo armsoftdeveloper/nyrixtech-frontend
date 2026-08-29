@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — cream base, bold near-black text, orange signal accent (LaunchBuff-style) */
+  --color-ink-950: #F0EEEA;
+  --color-ink-900: #F6F5F3;
+  --color-ink-800: #FFFFFF;
+  --color-ink-700: #F0F3F6;
+  --color-ink-600: #E4E7EC;
+  --color-line-800: #DDE0E4;
+
+  --color-mist-100: #03060B;
+  --color-mist-200: #1D2430;
+  --color-mist-300: #33404F;
+  --color-mist-400: #45556C;
+  --color-mist-500: #64748B;
+  --color-mist-600: #94A3B8;
+
+  --color-signal-400: #FB7C00;
+  --color-signal-500: #E97F00;
+  --color-signal-600: #DB6C00;
+
+  --color-status-ok: #16A34A;
+  --color-status-warn: #D97706;
+  --color-status-crit: #DC2626;
+
+  --font-display: "Outfit", "Inter", sans-serif;
+  --font-body: "Outfit", system-ui, sans-serif;
+  --font-mono: "Outfit", system-ui, sans-serif;
+
+  --font-weight-black: 400;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Reserve the scrollbar gutter permanently so the header/nav never shifts
+     horizontally when a route transition briefly changes page height across
+     the scrollbar threshold (e.g. a tall page swapping for a short one). */
+  scrollbar-gutter: stable;
+}
+
+body {
+  background-color: var(--color-ink-900);
+  color: var(--color-mist-400);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+/* Faint dot-grid backdrop used behind hero / feature sections */
+.bg-blueprint {
+  background-image:
+    linear-gradient(to right, rgba(3, 6, 11, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(3, 6, 11, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.bg-blueprint-fade {
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 40%, transparent 100%);
+}
+
+::selection {
+  background: var(--color-signal-500);
+  color: white;
+}
+
+/* Focus visibility (accessibility) */
+:focus-visible {
+  outline: 2px solid var(--color-signal-500);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
